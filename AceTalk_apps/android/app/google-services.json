@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "247454986358",
+    "project_id": "aiinterview-a94bd",
+    "storage_bucket": "aiinterview-a94bd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:247454986358:android:aa102b7daed89721012f57",
+        "android_client_info": {
+          "package_name": "com.example.ai_interview_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD76ex-U3L3sIfmxfqYz4RpV7bvqYGAs4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
