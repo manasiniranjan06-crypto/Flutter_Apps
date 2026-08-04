@@ -1,9 +1,12 @@
 import 'dart:ui';
+import 'package:ai_interview_app/Screens/block/historybloc.dart';
+import 'package:ai_interview_app/Screens/block/langselectblock.dart';
 import 'package:ai_interview_app/Screens/mainScreen/view/History_screen.dart';
 import 'package:ai_interview_app/Screens/mainScreen/view/homeScreen.dart';
 import 'package:ai_interview_app/Screens/mainScreen/view/language_screen.dart';
 import 'package:ai_interview_app/Screens/mainScreen/view/profileScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
@@ -40,12 +43,25 @@ class _BottomNavbarState extends State<BottomNavbar> {
       ),
 
       child: Scaffold(
-        //use this for nav bar floats
-        extendBody: true, 
-        backgroundColor: Colors.transparent,
-        body: pages[currentIndex],
-        bottomNavigationBar: glassNavbar(),
+  extendBody: true,
+  backgroundColor: Colors.transparent,
+
+  body: MultiBlocProvider(
+    providers: [
+      BlocProvider(
+        create: (_) => LanguageBloc(),
       ),
+
+      BlocProvider(
+        create: (_) => HistoryBloc(),
+      ),
+    ],
+
+    child: pages[currentIndex],
+  ),
+
+  bottomNavigationBar: glassNavbar(),
+),
     );
   }
 

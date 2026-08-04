@@ -1,11 +1,7 @@
-
-
-import 'package:ai_interview_app/Screens/startScreens/view/IntroScreen.dart';
-
 import 'package:ai_interview_app/Widget/aiinterview.dart';
+import 'package:ai_interview_app/Screens/startScreens/view/IntroScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 
 class AuthGate extends StatelessWidget {
   const AuthGate({super.key});
@@ -14,21 +10,24 @@ class AuthGate extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
+
       builder: (context, snapshot) {
 
-        // 🔵 Loading
+        // Loading
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         }
 
-        // 🟢 User Logged In
+        // User logged in
         if (snapshot.hasData) {
           return AIInterviewApp();
         }
 
-        // 🔴 Not Logged In
+        // User logged out
         return IntroScreen();
       },
     );

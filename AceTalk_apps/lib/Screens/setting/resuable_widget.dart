@@ -34,7 +34,10 @@ class GlassCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: bgColor ?? AppColors2.s1.withOpacity(0.9),
             borderRadius: BorderRadius.circular(radius),
-            border: Border.all(color: borderColor ?? Colors.white10, width: 1.2),
+            border: Border.all(
+              color: borderColor ?? Colors.white10,
+              width: 1.2,
+            ),
           ),
           child: child,
         ),
@@ -51,23 +54,31 @@ class SectionLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Container(
-        width: 3, height: 14,
-        decoration: BoxDecoration(
-          color: AppColors2.cyan,
-          borderRadius: BorderRadius.circular(2),
-          boxShadow: [BoxShadow(color: AppColors2.cyan.withOpacity(0.5), blurRadius: 8)],
+    return Row(
+      children: [
+        Container(
+          width: 3,
+          height: 14,
+          decoration: BoxDecoration(
+            color: AppColors2.cyan,
+            borderRadius: BorderRadius.circular(2),
+            boxShadow: [
+              BoxShadow(color: AppColors2.cyan.withOpacity(0.5), blurRadius: 8),
+            ],
+          ),
         ),
-      ),
-      const SizedBox(width: 8),
-      Text(
-        label.toUpperCase(),
-        style: GoogleFonts.spaceMono(
-          fontSize: 10, color: AppColors2.ts, fontWeight: FontWeight.w700, letterSpacing: 2.5,
+        const SizedBox(width: 8),
+        Text(
+          label.toUpperCase(),
+          style: GoogleFonts.spaceMono(
+            fontSize: 10,
+            color: AppColors2.ts,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 2.5,
+          ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }
 
@@ -89,7 +100,11 @@ class AppTag extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: GoogleFonts.spaceMono(color: color, fontSize: 9, fontWeight: FontWeight.bold),
+        style: GoogleFonts.spaceMono(
+          color: color,
+          fontSize: 9,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }
@@ -114,7 +129,8 @@ class ChipSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      spacing: 8, runSpacing: 8,
+      spacing: 8,
+      runSpacing: 8,
       children: options.map((o) {
         final active = o == selected;
         return GestureDetector(
@@ -128,13 +144,19 @@ class ChipSelector extends StatelessWidget {
             decoration: BoxDecoration(
               color: active ? color.withOpacity(0.18) : AppColors2.s2,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: active ? color.withOpacity(0.65) : Colors.white12),
-              boxShadow: active ? [BoxShadow(color: color.withOpacity(0.22), blurRadius: 12)] : [],
+              border: Border.all(
+                color: active ? color.withOpacity(0.65) : Colors.white12,
+              ),
+              boxShadow: active
+                  ? [BoxShadow(color: color.withOpacity(0.22), blurRadius: 12)]
+                  : [],
             ),
             child: Text(
               o,
               style: GoogleFonts.dmSans(
-                color: active ? color : AppColors2.ts, fontSize: 12.5, fontWeight: FontWeight.w700,
+                color: active ? color : AppColors2.ts,
+                fontSize: 12.5,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
@@ -160,22 +182,33 @@ class AnimToggle extends StatelessWidget {
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
-        width: 52, height: 28,
+        width: 52,
+        height: 28,
         decoration: BoxDecoration(
           color: value ? AppColors2.cyan.withOpacity(0.22) : AppColors2.s2,
           borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: value ? AppColors2.cyan.withOpacity(0.6) : Colors.white12),
+          border: Border.all(
+            color: value ? AppColors2.cyan.withOpacity(0.6) : Colors.white12,
+          ),
         ),
         child: AnimatedAlign(
           duration: const Duration(milliseconds: 250),
           alignment: value ? Alignment.centerRight : Alignment.centerLeft,
           child: Container(
             margin: const EdgeInsets.all(3),
-            width: 22, height: 22,
+            width: 22,
+            height: 22,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: value ? AppColors2.cyan : AppColors2.ts,
-              boxShadow: value ? [BoxShadow(color: AppColors2.cyan.withOpacity(0.55), blurRadius: 10)] : [],
+              boxShadow: value
+                  ? [
+                      BoxShadow(
+                        color: AppColors2.cyan.withOpacity(0.55),
+                        blurRadius: 10,
+                      ),
+                    ]
+                  : [],
             ),
           ),
         ),
@@ -213,30 +246,51 @@ class NavTile extends StatelessWidget {
       },
       child: GlassCard(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        child: Row(children: [
-          Container(
-            width: 42, height: 42,
-            decoration: BoxDecoration(
-              color: color.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: color.withOpacity(0.3)),
+        child: Row(
+          children: [
+            Container(
+              width: 42,
+              height: 42,
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.12),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: color.withOpacity(0.3)),
+              ),
+              child: Icon(icon, color: color, size: 20),
             ),
-            child: Icon(icon, color: color, size: 20),
-          ),
-          const SizedBox(width: 14),
-          Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(title,
-                  style: GoogleFonts.dmSans(color: AppColors2.tp, fontSize: 14.5, fontWeight: FontWeight.w700)),
-              const SizedBox(height: 2),
-              Text(subtitle,
-                  style: GoogleFonts.dmSans(color: AppColors2.ts, fontSize: 11.5)),
-            ]),
-          ),
-          if (trailing != null) ...[const SizedBox(width: 8), trailing!],
-          const SizedBox(width: 4),
-          const Icon(Icons.chevron_right_rounded, color: AppColors2.ts, size: 22),
-        ]),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: GoogleFonts.dmSans(
+                      color: AppColors2.tp,
+                      fontSize: 14.5,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: GoogleFonts.dmSans(
+                      color: AppColors2.ts,
+                      fontSize: 11.5,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            if (trailing != null) ...[const SizedBox(width: 8), trailing!],
+            const SizedBox(width: 4),
+            const Icon(
+              Icons.chevron_right_rounded,
+              color: AppColors2.ts,
+              size: 22,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -259,32 +313,59 @@ class SaveButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18),
           gradient: saving
-              ? LinearGradient(colors: [AppColors2.green.withOpacity(0.6), AppColors2.green.withOpacity(0.8)])
+              ? LinearGradient(
+                  colors: [
+                    AppColors2.green.withOpacity(0.6),
+                    AppColors2.green.withOpacity(0.8),
+                  ],
+                )
               : const LinearGradient(
-                  colors: [Color(0xFF1565C0), Color(0xFF2979FF), Color(0xFF00B0FF)],
+                  colors: [
+                    Color(0xFF1565C0),
+                    Color(0xFF2979FF),
+                    Color(0xFF00B0FF),
+                  ],
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                 ),
           boxShadow: [
             BoxShadow(
               color: AppColors2.blue.withOpacity(0.3),
-              blurRadius: 20, spreadRadius: 1, offset: const Offset(0, 6),
+              blurRadius: 20,
+              spreadRadius: 1,
+              offset: const Offset(0, 6),
             ),
           ],
         ),
         child: Center(
           child: saving
               ? const SizedBox(
-                  width: 22, height: 22,
-                  child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5),
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(
+                    color: Colors.white,
+                    strokeWidth: 2.5,
+                  ),
                 )
-              : Row(mainAxisSize: MainAxisSize.min, children: [
-                  const Icon(Icons.save_rounded, color: Colors.white, size: 20),
-                  const SizedBox(width: 10),
-                  Text('Save Changes',
+              : Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(
+                      Icons.save_rounded,
+                      color: Colors.white,
+                      size: 20,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      'Save Changes',
                       style: GoogleFonts.dmSans(
-                          color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800)),
-                ]),
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  ],
+                ),
         ),
       ),
     );
@@ -293,36 +374,54 @@ class SaveButton extends StatelessWidget {
 
 // ─── Snackbar Helper ─────────────────────────────────────────────────────────
 
-void showAppSnack(BuildContext context, String msg, Color color, IconData icon) {
+void showAppSnack(
+  BuildContext context,
+  String msg,
+  Color color,
+  IconData icon,
+) {
   ScaffoldMessenger.of(context).clearSnackBars();
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    backgroundColor: Colors.transparent,
-    elevation: 0,
-    duration: const Duration(seconds: 3),
-    content: Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-      decoration: BoxDecoration(
-        color: AppColors2.s1,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withOpacity(0.4), width: 1.5),
-        boxShadow: [BoxShadow(color: color.withOpacity(0.15), blurRadius: 20)],
-      ),
-      child: Row(children: [
-        Icon(icon, color: color, size: 20),
-        const SizedBox(width: 10),
-        Expanded(
-          child: Text(msg,
-              style: GoogleFonts.dmSans(color: AppColors2.tp, fontSize: 13, fontWeight: FontWeight.w500)),
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      duration: const Duration(seconds: 3),
+      content: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        decoration: BoxDecoration(
+          color: AppColors2.s1,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: color.withOpacity(0.4), width: 1.5),
+          boxShadow: [
+            BoxShadow(color: color.withOpacity(0.15), blurRadius: 20),
+          ],
         ),
-      ]),
+        child: Row(
+          children: [
+            Icon(icon, color: color, size: 20),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                msg,
+                style: GoogleFonts.dmSans(
+                  color: AppColors2.tp,
+                  fontSize: 13,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     ),
-  ));
+  );
 }
 
 // ─── Animated Background Scaffold ────────────────────────────────────────────
 
 class AnimatedBgScaffold extends StatefulWidget {
-  final Widget Function(BuildContext context, AnimationController controller) builder;
+  final Widget Function(BuildContext context, AnimationController controller)
+  builder;
   final Color orbA;
   final Color orbB;
 
@@ -345,10 +444,14 @@ class _AnimatedBgScaffoldState extends State<AnimatedBgScaffold>
   @override
   void initState() {
     super.initState();
-    _ctrl = AnimationController(vsync: this, duration: const Duration(seconds: 12))..repeat();
-    _anim = Tween<double>(begin: 0, end: 6.2832).animate(
-      CurvedAnimation(parent: _ctrl, curve: Curves.linear),
-    );
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 12),
+    )..repeat();
+    _anim = Tween<double>(
+      begin: 0,
+      end: 6.2832,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.linear));
   }
 
   @override

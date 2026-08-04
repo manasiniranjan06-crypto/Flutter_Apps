@@ -1,8 +1,6 @@
 import 'dart:developer';
 import 'dart:ui';
 
-import 'package:ai_interview_app/Screens/mainScreen/view/homeScreen.dart';
-import 'package:ai_interview_app/Screens/startScreens/service/Authgate.dart';
 import 'package:ai_interview_app/Screens/startScreens/view/SignupScreen.dart';
 import 'package:ai_interview_app/Screens/startScreens/widget/customSnackBar.dart';
 import 'package:ai_interview_app/Widget/Bottom_navbar.dart';

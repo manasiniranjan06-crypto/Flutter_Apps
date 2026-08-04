@@ -1,6 +1,5 @@
 
 
-// lib/features/home/presentation/pages/home_screen.dart
 import 'dart:math';
 import 'dart:ui';
 
@@ -33,8 +32,6 @@ class _C {
   static const tp          = Color.fromARGB(255, 232, 244, 253);
   static const ts          = Color.fromARGB(255,  91, 143, 168);
 }
-
-// ─── HOME SCREEN ─────────────────────────────────────────────────────────────
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

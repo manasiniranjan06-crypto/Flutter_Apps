@@ -1,4 +1,3 @@
-
 import 'dart:async';
 import 'dart:ui';
 import 'package:ai_interview_app/Screens/startScreens/view/loginScreen.dart';
@@ -19,7 +18,7 @@ class IntroScreen extends StatefulWidget {
 class _IntroScreenState extends State<IntroScreen> {
   final PageController _pageController = PageController();
   final FlutterTts flutterTts = FlutterTts();
-  
+
   int currentPage = 0;
   String displayedText = "";
   int currentIndex = 0;
@@ -29,19 +28,22 @@ class _IntroScreenState extends State<IntroScreen> {
   final List<IntroData> introPages = [
     IntroData(
       title: "Welcome to AceTalk",
-      description: "Hello! I'm your AI Interview Coach. I will guide you through your interview preparation journey with personalized practice sessions.",
+      description:
+          "Hello! I'm your AI Interview Coach. I will guide you through your interview preparation journey with personalized practice sessions.",
       lottieAsset: "assets/lottie_ani/robo1.json",
       gradientColors: [Colors.black, Color.fromARGB(255, 3, 58, 107)],
     ),
     IntroData(
       title: "Practice & Improve",
-      description: "Practice various interview rounds including technical, HR, and behavioral interviews. Get instant feedback and improve your skills.",
+      description:
+          "Practice various interview rounds including technical, HR, and behavioral interviews. Get instant feedback and improve your skills.",
       lottieAsset: "assets/lottie_ani/prctice_code.json",
       gradientColors: [Colors.black, Color.fromARGB(255, 58, 3, 107)],
     ),
     IntroData(
       title: "Ace Your Interview",
-      description: "Track your progress, analyze your performance, and build confidence. Get ready to succeed in your dream job interview!",
+      description:
+          "Track your progress, analyze your performance, and build confidence. Get ready to succeed in your dream job interview!",
       lottieAsset: "assets/lottie_ani/interview_intro.json",
       gradientColors: [Colors.black, Color.fromARGB(255, 3, 58, 107)],
     ),
@@ -58,11 +60,11 @@ class _IntroScreenState extends State<IntroScreen> {
     await flutterTts.setSpeechRate(0.45);
     await flutterTts.setPitch(1.0);
     await flutterTts.setVolume(1.0);
-    
+
     flutterTts.setCompletionHandler(() {
       // Speech completed
     });
-    
+
     startTypingAndSpeaking(0);
   }
 
@@ -70,7 +72,7 @@ class _IntroScreenState extends State<IntroScreen> {
     // Cancel previous timer
     typingTimer?.cancel();
     flutterTts.stop();
-    
+
     setState(() {
       displayedText = "";
       currentIndex = 0;
@@ -170,7 +172,7 @@ class _IntroScreenState extends State<IntroScreen> {
               );
             },
           ),
-          
+
           // Bottom Navigation Area
           Positioned(
             bottom: 40,
@@ -191,9 +193,9 @@ class _IntroScreenState extends State<IntroScreen> {
                     spacing: 8,
                   ),
                 ),
-                
+
                 const SizedBox(height: 30),
-                
+
                 // Next/Get Started Button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -284,7 +286,7 @@ class IntroPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
-            
+
             // Title
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -299,9 +301,9 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             const SizedBox(height: 30),
-            
+
             // Robot Animation with Glow Effect
             Hero(
               tag: 'robot_animation',
@@ -318,15 +320,12 @@ class IntroPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: Lottie.asset(
-                  data.lottieAsset,
-                  fit: BoxFit.contain,
-                ),
+                child: Lottie.asset(data.lottieAsset, fit: BoxFit.contain),
               ),
             ),
-            
+
             const SizedBox(height: 40),
-            
+
             // Glassmorphism Text Box
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25),
@@ -336,10 +335,7 @@ class IntroPage extends StatelessWidget {
                   filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
                   child: Container(
                     padding: const EdgeInsets.all(25),
-                    constraints: BoxConstraints(
-                      minHeight: 160,
-                      maxHeight: 200,
-                    ),
+                    constraints: BoxConstraints(minHeight: 160, maxHeight: 200),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.12),
@@ -381,7 +377,7 @@ class IntroPage extends StatelessWidget {
                 ),
               ),
             ),
-            
+
             const Spacer(),
           ],
         ),
@@ -389,7 +385,6 @@ class IntroPage extends StatelessWidget {
     );
   }
 }
-
 
 // Data Model
 class IntroData {
